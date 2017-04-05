@@ -115,7 +115,9 @@ public class QuickTour {
         System.out.println(myDoc.toJson());
 
         // now use a range query to get a larger subset
-        cursor = collection.find(gt("i", 50)).iterator();
+        cursor = collection.find(gt("i", 50)).batchSize(10).iterator();
+        collection.find().batchSize(100).iterator();
+//        collection.find(or(gt("", 22), gte("", 50), and()));
 
         try {
             while (cursor.hasNext()) {
